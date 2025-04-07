@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Disguiser</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    #urlInput {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    #playButton {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    #playButton:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Must be unblocked already.</h1>
+  <h3>Use to hide your game links.</h3>
+
+  <input type="text" id="urlInput" placeholder="Enter a URL (Exact Url)">
+  <button id="playButton">Disguise now</button>
+
+  <script>
+    var win;
+    var playButton = document.querySelector('#playButton');
+    var urlInput = document.querySelector('#urlInput');
+
+    playButton.onclick = function () {
+      var url = urlInput.value;
+      if (url) {
+        if (win) {
+          win.location.href = url;
+        } else {
+          win = window.open();
+          win.document.body.style.margin = '0';
+          win.document.body.style.height = '100vh';
+
+          var iframe = win.document.createElement('iframe');
+          iframe.style.border = 'none';
+          iframe.style.width = '100%';
+          iframe.style.height = '100%';
+          iframe.style.margin = '0';
+          iframe.src = url;
+
+          win.document.body.appendChild(iframe);
+        }
+        playButton.style.background = '#808080';
+        playButton.innerHTML = "Disguise now";
+      }
+    }
+  </script>
+</body>
+
+</html>
